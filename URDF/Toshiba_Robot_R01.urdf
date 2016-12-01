@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot name="Toshiba_Robot_R01">
+
+<!--Links -->
+<link name="base_link">
+ <visual>
+  <origin xyz="0 0 0.158925" rpy="0 0 0" />
+   <geometry>
+     <mesh filename="package://robot_simulation/meshes/base_R01.stl"/>  
+   </geometry>
+   <material name="black">
+     <color rgba="0.1 0.1 0.1 1"/>
+   </material>
+ </visual> 
+</link>
+
+<link name="arm_link">
+ <visual>
+  <origin xyz="0.15 0 0" rpy="0 0 0" />
+   <geometry>
+     <mesh filename="package://robot_simulation/meshes/arm_link_R01.stl"/>  
+   </geometry>
+   <material name="red">
+     <color rgba="0.9 0.1 0.1 1"/>
+   </material>
+ </visual>
+</link>
+
+<link name="head_link">
+ <visual>
+  <origin xyz="0.175 0 0.136" rpy="0 0 0" />
+   <geometry>
+     <mesh filename="package://robot_simulation/meshes/head_link_R01.stl"/>  
+   </geometry>
+   <material name="black">
+     <color rgba="0.1 0.1 0.1 1"/>
+   </material>
+ </visual>
+</link>
+
+<link name="End_link">
+ <visual>
+  <origin xyz="0 0 0" rpy="0 0 0" />
+  <geometry>
+     <mesh filename="package://robot_simulation/meshes/End_link_R01.stl"/>  
+  </geometry>
+  <material name="red">
+     <color rgba="0.7 0.1 0.1 1"/>
+  </material>
+ </visual>
+</link>
+
+<!-- Joints -->
+
+<joint name="joint1" type="revolute">
+  <axis xyz="0 0 1" /> 
+  <limit effort="3.0" velocity="0.01" lower="-2.617" upper="2.617"/>
+  <origin xyz="0 0 0.36535" rpy="0 0 0" />
+  <parent link="base_link" />
+  <child link="arm_link" />
+</joint>
+
+<joint name="joint2" type="revolute">
+ <axis xyz="1 0 0" /> 
+ <limit effort="3.0" velocity="0.01" lower="-2.617" upper="2.617"/>
+ <origin xyz="0.3 0 0.0475" rpy="0 0 0" />
+ <parent link="arm_link" />
+ <child link="head_link" />
+</joint>
+
+<joint name="joint3" type="prismatic">
+ <axis xyz="1 0 0" /> 
+ <limit effort="3.0" velocity="0.01" lower="0" upper="0.1"/>
+ <origin xyz="0.35 0 0.1" rpy="0 0 0" />
+ <parent link="head_link" />
+ <child link="End_link" />
+</joint>
+
+
+
+<!-- Transmissions -->
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint1"/>
+    <actuator name="motor1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint2"/>
+    <actuator name="motor2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint3"/>
+    <actuator name="motor3">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>
