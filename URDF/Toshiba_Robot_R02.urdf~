@@ -3,11 +3,11 @@
 
 <!--Links -->
 
-<xacro:property name="xyz1" value="0 0 0.097"/>
-<xacro:property name="rpy1" value="0 0 0" />
+<xacro:property name="xyz" value="0 0 0.097"/>
+<xacro:property name="rpy" value="0 0 0" />
 <link name="base_link">
  <visual>
-  <origin xyz="$(xyz1)" rpy="$(rpy1)" />
+  <origin xyz="0 0 0.097" rpy="0 0 0" />
    <geometry>
      <mesh filename="package://robot_simulation/meshes_r01/base.stl" scale="0.001 0.001 0.001"/>  
    </geometry>
@@ -16,7 +16,7 @@
    </material>
  </visual>
  <collision>
-  <origin xyz="$(xyz1)" rpy="$(rpy1)" />
+  <origin xyz="0 0 0.097" rpy="0 0 0" />
    <geometry>
      <mesh filename="package://robot_simulation/meshes_r01/base.stl" scale="0.001 0.001 0.001"/>  
    </geometry>
