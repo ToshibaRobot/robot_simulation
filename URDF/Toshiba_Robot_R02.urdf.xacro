@@ -213,7 +213,7 @@ This link is the base of the arm in which arm is placed
   <!-- ros_control plugin -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-   <!--   <robotNamespace>/sr_scara_hx</robotNamespace> -->
+      <robotNamespace>/sr_scara_hx</robotNamespace> 
     </plugin>
 </gazebo>
 </robot> 
