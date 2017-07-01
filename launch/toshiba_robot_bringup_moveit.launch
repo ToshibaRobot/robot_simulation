@@ -1,0 +1,24 @@
+<launch>
+
+
+  <!-- Launch Gazebo  -->
+  <include file="$(find robot_simulation)/launch/toshiba_robot_gazebo.launch" />   
+
+  <!-- ros_control seven dof arm launch file -->
+  <include file="$(find robot_simulation)/launch/toshiba_robot_gazebo_states.launch" />   
+
+  <!-- ros_control position control dof arm launch file -->
+  <!--<include file="$(find robot_simulation)/launch/toshiba_robot_gazebo_position.launch" />  -->
+
+  <!-- ros_control trajectory control dof arm launch file -->
+  <include file="$(find robot_simulation)/launch/toshiba_robot_trajectory_controller.launch" />    
+
+  <!-- moveit launch file -->
+  <include file="$(find toshiba_moveit_config)/launch/moveit_planning_execution.launch" />    
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/sr_scara_hx/joint_states]</rosparam>
+  </node>
+
+</launch>
